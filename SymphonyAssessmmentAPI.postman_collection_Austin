@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "fbb1f7cb-12b0-4ebb-99dc-5d4501cc90f4",
+		"name": "SymphonyAssessmmentAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6900185"
+	},
+	"item": [
+		{
+			"name": "GetEnteries",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var response = JSON.parse(responseBody)\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"let obj = pm.response.json().entries.filter(e => e.Category === \"Authentication & Authorization\");\r",
+							"console.log ('The for account Authentication & Authorization = '+ obj.length);\r",
+							"\r",
+							"const res = pm.response.json();\r",
+							"\r",
+							"const first = res.entries.find(p => p.Category === 'Authentication & Authorization');\r",
+							"\r",
+							"pm.test('Check Authentication & Authorization', () => {\r",
+							"    pm.expect(first.Category).eql('Authentication & Authorization');\r",
+							"    //pm.environment.set('name', first.name);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Category",
+						"value": "x.entries[739]",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.publicapis.org/entries",
+					"protocol": "https",
+					"host": [
+						"api",
+						"publicapis",
+						"org"
+					],
+					"path": [
+						"entries"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Base_URL",
+			"value": "https://api.publicapis.org",
+			"type": "string"
+		}
+	]
+}
